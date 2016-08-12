@@ -1,0 +1,25 @@
+main: me.tonayy.DevTestingPlugin
+name: DevTestingPlugin
+version: 1.0
+description: Testing Only!
+commands:
+  hello:
+    description: Replies with a greeting to the player!
+    usage: /<command>
+  spud:
+    description: Surprise!
+    usage: /<command>
+  hof:
+    description: Hall of Fame
+    usage: /<command>
+  pkmngo:
+    description: Pokemon Go!
+    usage: /<command>
+  stahp:
+    description: Disables Hall of Fame.
+    usage: /<command>
+  showhof:
+    description: Enables Hall of Fame.
+    usage: /<command>
+  lolz:
+    usage: /<command>
