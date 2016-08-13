@@ -14,6 +14,8 @@ public class DevTestingPlugin extends JavaPlugin{
 		this.getCommand("stahp").setExecutor(new CmdStahp());
 		this.getCommand("showhof").setExecutor(new CmdShowhof());
 		this.getCommand("lolz").setExecutor(new CmdLolz());
+		this.getCommand("tony").setExecutor(new CmdTony());
+		this.getCommand("untony").setExecutor(new CmdUntony());
 		BukkitScheduler scheduler = getServer().getScheduler();
 		scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
             @Override

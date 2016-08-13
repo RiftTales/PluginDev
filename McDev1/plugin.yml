@@ -24,5 +24,11 @@ commands:
   showhof:
     description: Enables Hall of Fame.
     usage: /<command>
+  tony:
+    description: Set player list name to current display name.
+    usage: /<command>
+  untony:
+    description: Resets player list name to default username.
+    usage: /<command>
   lolz:
     usage: /<command>
