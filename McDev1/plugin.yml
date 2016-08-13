@@ -15,6 +15,9 @@ commands:
   pkmngo:
     description: Pokemon Go!
     usage: /<command>
+  kek:
+    description: kek kek kek
+    usage: /<command>
   stahp:
     description: Disables Hall of Fame.
     usage: /<command>
