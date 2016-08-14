@@ -10,6 +10,7 @@ public class DevTestingPlugin extends JavaPlugin{
 		this.getCommand("spud").setExecutor(new CmdSpud());
 		this.getCommand("hof").setExecutor(new CmdHof());
 		this.getCommand("pkmngo").setExecutor(new CmdPkmngo());
+		this.getCommand("kek").setExecutor(new CmdKek());
 		this.getCommand("lolz").setExecutor(new CmdKek());
 		this.getCommand("stahp").setExecutor(new CmdStahp());
 		this.getCommand("showhof").setExecutor(new CmdShowhof());
