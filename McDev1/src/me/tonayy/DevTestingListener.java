@@ -3,6 +3,7 @@ package me.tonayy;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 public class DevTestingListener implements Listener {
 
@@ -21,6 +22,13 @@ public class DevTestingListener implements Listener {
 			e.setMessage("KONNICHIWA");
 			
 		}
+		
+	}
+	
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent e) {
+		
+		e.setJoinMessage(e.getJoinMessage().replaceAll("tonyboyangie3", "Notch"));
 		
 	}
 
