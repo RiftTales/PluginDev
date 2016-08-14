@@ -16,6 +16,8 @@ public class DevTestingPlugin extends JavaPlugin{
 		this.getCommand("lolz").setExecutor(new CmdLolz());
 		this.getCommand("tony").setExecutor(new CmdTony());
 		this.getCommand("untony").setExecutor(new CmdUntony());
+		
+		
 		BukkitScheduler scheduler = getServer().getScheduler();
 		scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
             @Override
@@ -25,7 +27,9 @@ public class DevTestingPlugin extends JavaPlugin{
             		getServer().broadcastMessage(ChatColor.AQUA + "Advancing their careers while consistently giving back to the students and the graduates of Full Sail University.");
             	}
             }
-        }, 200L, 3600L); // 10 seconds, 3 minutes
-		//}, 500L, 200L); // 25 seconds, 10 seconds
+        }, 200L, 3600L);
+		
+		
+		new DevTestingListener(this);
 	}
 }
