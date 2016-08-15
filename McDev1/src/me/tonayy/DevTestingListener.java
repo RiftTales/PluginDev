@@ -29,14 +29,26 @@ public class DevTestingListener implements Listener {
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
 		
-		e.setJoinMessage(e.getJoinMessage().replaceAll("tonyboyangie3", "Notch"));
+		String name = e.getPlayer().getName();
+		if (name.equalsIgnoreCase("tonyboyangie3")) {
+			e.setJoinMessage(e.getJoinMessage().replaceFirst("tonyboyangie3", "Notch"));
+		}
+		else if (name.equalsIgnoreCase("BSparkz")) {
+			e.setJoinMessage(e.getJoinMessage().replaceFirst("BSparkz", "Nobody"));
+		}
 		
 	}
 	
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent e) {
 		
-		e.setQuitMessage(e.getQuitMessage().replaceAll("tonyboyangie3", "Notch"));
+		String name = e.getPlayer().getName();
+		if (name.equalsIgnoreCase("tonyboyangie3")) {
+			e.setQuitMessage(e.getQuitMessage().replaceFirst("tonyboyangie3", "Notch"));
+		}
+		else if (name.equalsIgnoreCase("BSparkz")) {
+			e.setQuitMessage(e.getQuitMessage().replaceFirst("BSparkz", "Nobody"));
+		}
 		
 	}
 
