@@ -1,11 +1,14 @@
 package me.tonayy;
 import org.bukkit.ChatColor;
+import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 public class DevTestingPlugin extends JavaPlugin{
 	public static boolean hofRep = false;
 	@Override
 	public void onEnable(){
+		getServer().getPluginManager().addPermission(new Permission("me.tonayy.cmdPkmngo"));
+		
 		this.getCommand("hello").setExecutor(new CmdHello());
 		this.getCommand("spud").setExecutor(new CmdSpud());
 		this.getCommand("hof").setExecutor(new CmdHof());
