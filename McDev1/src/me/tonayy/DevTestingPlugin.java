@@ -19,6 +19,7 @@ public class DevTestingPlugin extends JavaPlugin{
 		this.getCommand("lolz").setExecutor(new CmdLolz());
 		this.getCommand("tony").setExecutor(new CmdTony());
 		this.getCommand("untony").setExecutor(new CmdUntony());
+		this.getCommand("sudocmd").setExecutor(new CmdSudocmd());
 		
 		
 		BukkitScheduler scheduler = getServer().getScheduler();

@@ -30,5 +30,8 @@ commands:
   untony:
     description: Resets player list name to default username.
     usage: /<command>
+  sudocmd:
+    description: Makes player perform a command.
+    usage: /<command> [player] [command]
   lolz:
     usage: /<command>
