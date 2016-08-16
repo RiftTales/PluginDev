@@ -33,5 +33,8 @@ commands:
   sudocmd:
     description: Makes player perform a command.
     usage: /<command> [player] [command]
+  sudo:
+    description: Makes player send a chat message or perform a command.
+    usage: /<command> [player] [message]
   lolz:
     usage: /<command>
