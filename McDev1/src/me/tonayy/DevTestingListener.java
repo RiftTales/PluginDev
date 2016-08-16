@@ -36,14 +36,17 @@ public class DevTestingListener implements Listener {
 			//e.getPlayer().getServer().broadcastMessage(ChatColor.RED + "Val has been terminated!");
 			e.setQuitMessage(ChatColor.RED + "Val has been terminated!");
 		}
-		else if (name.equalsIgnoreCase("BSparkz")) {
+		else if (name.equalsIgnoreCase("bsparkz")) {
 			//e.setQuitMessage(e.getQuitMessage().replaceFirst("BSparkz", "Nobody"));
 			//e.getPlayer().getServer().broadcastMessage(ChatColor.DARK_GREEN + "Our favorite hero Spud has left us forever :(");
 			e.setQuitMessage(ChatColor.DARK_GREEN + "Our favorite hero Spud has left us forever :(");
 		}
-		else if (name.equalsIgnoreCase("LukeCreative") || name.equalsIgnoreCase("LukeSurvival")) {
+		else if (name.equalsIgnoreCase("lukecreative") || name.equalsIgnoreCase("lukesurvival")) {
 			//e.getPlayer().getServer().broadcastMessage(ChatColor.LIGHT_PURPLE + "Byee Luke");
 			e.setQuitMessage(ChatColor.LIGHT_PURPLE + "Byee Luke");
+		}
+		else if (name.equalsIgnoreCase("b1oodwing")) {
+			e.setQuitMessage(ChatColor.BLUE + "Chris is gone");
 		}
 		
 	}
@@ -58,15 +61,18 @@ public class DevTestingListener implements Listener {
 			e.setJoinMessage(ChatColor.DARK_RED + "Beware! Val has entered the game.");
 			e.getPlayer().setDisplayName(ChatColor.DARK_RED + "Val");
 		}
-		else if (name.equalsIgnoreCase("BSparkz")) {
+		else if (name.equalsIgnoreCase("bsparkz")) {
 			//e.setJoinMessage(e.getJoinMessage().replaceFirst("BSparkz", "Nobody"));
 			//e.getPlayer().getServer().broadcastMessage(ChatColor.GREEN + "Spud is here to save the day!");
 			e.setJoinMessage(ChatColor.GREEN + "Spud is here to save the day!");
 			e.getPlayer().setDisplayName(ChatColor.GREEN + "Spud");
 		}
-		else if (name.equalsIgnoreCase("LukeCreative") || name.equalsIgnoreCase("LukeSurvival")) {
+		else if (name.equalsIgnoreCase("lukecreative") || name.equalsIgnoreCase("lukesurvival")) {
 			//e.getPlayer().getServer().broadcastMessage(ChatColor.DARK_PURPLE + "Yay! Luke is here!");
 			e.setJoinMessage(ChatColor.DARK_PURPLE + "Yay! Luke is here!");
+		}
+		else if (name.equalsIgnoreCase("b1oodwing")) {
+			e.setJoinMessage(ChatColor.BLUE + "Hey there Chris! You're a nerd..");
 		}
 		
 	}
