@@ -3,12 +3,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
-public class DevTestingPlugin extends JavaPlugin{
+public class DevTestingPlugin extends JavaPlugin {
 	public static boolean hofRep = false;
 	@Override
 	public void onEnable(){
+		// Setup Permissions
 		getServer().getPluginManager().addPermission(new Permission("me.tonayy.cmdPkmngo"));
 		
+		// Setup Commands
 		this.getCommand("hello").setExecutor(new CmdHello());
 		this.getCommand("spud").setExecutor(new CmdSpud());
 		this.getCommand("hof").setExecutor(new CmdHof());
@@ -22,6 +24,7 @@ public class DevTestingPlugin extends JavaPlugin{
 		this.getCommand("sudocmd").setExecutor(new CmdSudocmd());
 		this.getCommand("sudo").setExecutor(new CmdSudo());
 		
+		// Setup Scheduled Tasks
 		BukkitScheduler scheduler = getServer().getScheduler();
 		scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
             @Override
@@ -33,7 +36,7 @@ public class DevTestingPlugin extends JavaPlugin{
             }
         }, 200L, 3600L);
 		
-		
+		// Setup Event Listeners
 		new DevTestingListener(this);
 	}
 }
