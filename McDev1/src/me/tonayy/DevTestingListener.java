@@ -33,14 +33,17 @@ public class DevTestingListener implements Listener {
 		String name = e.getPlayer().getName();
 		if (name.equalsIgnoreCase("tonyboyangie3")) {
 			//e.setQuitMessage(e.getQuitMessage().replaceFirst("tonyboyangie3", "Notch"));
-			e.getPlayer().getServer().broadcastMessage(ChatColor.RED + "Val has been terminated!");
+			//e.getPlayer().getServer().broadcastMessage(ChatColor.RED + "Val has been terminated!");
+			e.setQuitMessage(ChatColor.RED + "Val has been terminated!");
 		}
 		else if (name.equalsIgnoreCase("BSparkz")) {
 			//e.setQuitMessage(e.getQuitMessage().replaceFirst("BSparkz", "Nobody"));
-			e.getPlayer().getServer().broadcastMessage(ChatColor.DARK_GREEN + "Our favorite hero Spud has left us forever :(");
+			//e.getPlayer().getServer().broadcastMessage(ChatColor.DARK_GREEN + "Our favorite hero Spud has left us forever :(");
+			e.setQuitMessage(ChatColor.DARK_GREEN + "Our favorite hero Spud has left us forever :(");
 		}
 		else if (name.equalsIgnoreCase("LukeCreative") || name.equalsIgnoreCase("LukeSurvival")) {
-			e.getPlayer().getServer().broadcastMessage(ChatColor.LIGHT_PURPLE + "Byee Luke");
+			//e.getPlayer().getServer().broadcastMessage(ChatColor.LIGHT_PURPLE + "Byee Luke");
+			e.setQuitMessage(ChatColor.LIGHT_PURPLE + "Byee Luke");
 		}
 		
 	}
@@ -51,16 +54,19 @@ public class DevTestingListener implements Listener {
 		String name = e.getPlayer().getName();
 		if (name.equalsIgnoreCase("tonyboyangie3")) {
 			//e.setJoinMessage(e.getJoinMessage().replaceFirst("tonyboyangie3", "Notch"));
-			e.getPlayer().getServer().broadcastMessage(ChatColor.DARK_RED + "Beware! Val has entered the game.");
+			//e.getPlayer().getServer().broadcastMessage(ChatColor.DARK_RED + "Beware! Val has entered the game.");
+			e.setJoinMessage(ChatColor.DARK_RED + "Beware! Val has entered the game.");
 			e.getPlayer().setDisplayName(ChatColor.DARK_RED + "Val");
 		}
 		else if (name.equalsIgnoreCase("BSparkz")) {
 			//e.setJoinMessage(e.getJoinMessage().replaceFirst("BSparkz", "Nobody"));
-			e.getPlayer().getServer().broadcastMessage(ChatColor.GREEN + "Spud is here to save the day!");
+			//e.getPlayer().getServer().broadcastMessage(ChatColor.GREEN + "Spud is here to save the day!");
+			e.setJoinMessage(ChatColor.GREEN + "Spud is here to save the day!");
 			e.getPlayer().setDisplayName(ChatColor.GREEN + "Spud");
 		}
 		else if (name.equalsIgnoreCase("LukeCreative") || name.equalsIgnoreCase("LukeSurvival")) {
-			e.getPlayer().getServer().broadcastMessage(ChatColor.DARK_PURPLE + "Yay! Luke is here!");
+			//e.getPlayer().getServer().broadcastMessage(ChatColor.DARK_PURPLE + "Yay! Luke is here!");
+			e.setJoinMessage(ChatColor.DARK_PURPLE + "Yay! Luke is here!");
 		}
 		
 	}
