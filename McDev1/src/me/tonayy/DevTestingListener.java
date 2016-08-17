@@ -48,6 +48,12 @@ public class DevTestingListener implements Listener {
 		else if (name.equalsIgnoreCase("b1oodwing")) {
 			e.setQuitMessage(ChatColor.BLUE + "Chris is gone");
 		}
+		else if (name.equalsIgnoreCase("sc_pikachu")) {
+			e.setQuitMessage(ChatColor.GRAY + "The Pikachu broke free!");
+		}
+		else if(name.equalsIgnoreCase("general_jaxter")) {
+			e.setQuitMessage(e.getQuitMessage().replaceAll("General_Jaxter", "Jax"));
+		}
 		
 	}
 	
@@ -73,6 +79,14 @@ public class DevTestingListener implements Listener {
 		}
 		else if (name.equalsIgnoreCase("b1oodwing")) {
 			e.setJoinMessage(ChatColor.BLUE + "Hey there Chris! You're a nerd..");
+		}
+		else if (name.equalsIgnoreCase("sc_pikachu")) {
+			e.setJoinMessage(ChatColor.YELLOW + "PIKACHU!");
+			e.getPlayer().performCommand("kek");
+		}
+		else if(name.equalsIgnoreCase("general_jaxter")) {
+			e.getPlayer().setDisplayName(ChatColor.DARK_AQUA + "JAXTER");
+			e.getPlayer().setPlayerListName(ChatColor.DARK_AQUA + "JAXTER");
 		}
 		
 	}
