@@ -24,6 +24,29 @@ public class DevTestingListener implements Listener {
 			e.setMessage("KONNICHIWA");
 			
 		}
+
+		String[] words = message.split(" ");
+		for (String s : words) {
+			if(s.equalsIgnoreCase("yes")) {
+				s = "nOpE";
+			}
+			else if (s.equalsIgnoreCase("the")) {
+				s = "tEh";
+			}
+			else if (s.equalsIgnoreCase("what")) {
+				s = "wAhT";
+			}
+			else if (s.equalsIgnoreCase("nerd")) {
+				s = "nUbB";
+			}
+			else if (s.equalsIgnoreCase("nerds")) {
+				s = "nUbBz";
+			}
+			else if (s.equalsIgnoreCase("fuck")) {
+				s = "fUdGe";
+			}
+		}
+		e.setMessage(String.join(" ", words).toLowerCase());
 		
 	}
 	
