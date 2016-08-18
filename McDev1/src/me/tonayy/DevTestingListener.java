@@ -25,30 +25,32 @@ public class DevTestingListener implements Listener {
 		if(message.equalsIgnoreCase("hey")){
 			
 			e.setMessage("KONNICHIWA");
+			return;
+		}
+		else if(message.equalsIgnoreCase("we")){
 			
+			e.setMessage("We are the crystal gems!");
+			return;
 		}
 
 		String[] words = e.getMessage().split(" ");
 		for (int i = 0; i < words.length; ++i) {
 			String s = words[i];
-			if(s.equalsIgnoreCase("yes")) {
-				words[i] = "nOpE";
-			}
-			else if (s.equalsIgnoreCase("the")) {
-				words[i] = "tEh";
-			}
-			else if (s.equalsIgnoreCase("what")) {
-				words[i] = "wAhT";
-			}
-			else if (s.equalsIgnoreCase("nerd")) {
-				words[i] = "nUbB";
-			}
-			else if (s.equalsIgnoreCase("nerds")) {
-				words[i] = "nUbBz";
-			}
-			else if (s.equalsIgnoreCase("fuck")) {
-				words[i] = "fUdGe";
-			}
+			if (s.equalsIgnoreCase("yes")) { words[i] = "nope"; }
+			else if (s.equalsIgnoreCase("the")) { words[i] = "teh"; }
+			else if (s.equalsIgnoreCase("what")) { words[i] = "waht"; }
+			else if (s.equalsIgnoreCase("nerd")) { words[i] = "nubb"; }
+			else if (s.equalsIgnoreCase("nerds")) { words[i] = "nubbz"; }
+			else if (s.equalsIgnoreCase("fuck")) { words[i] = "fudge"; }
+			else if (s.equalsIgnoreCase("tony")) { words[i] = "tonayy"; }
+			else if (s.equalsIgnoreCase("my")) { words[i] = "me"; }
+			else if (s.equalsIgnoreCase("crap")) { words[i] = "feces"; }
+			else if (s.equalsIgnoreCase("shit")) { words[i] = "feces"; }
+			else if (s.equalsIgnoreCase("hate")) { words[i] = "love"; }
+			else if (s.equalsIgnoreCase("love")) { words[i] = "hate"; }
+			else if (s.equalsIgnoreCase("you")) { words[i] = "yuo"; }
+			else if (s.equalsIgnoreCase("chris")) { words[i] = "kaneki"; }
+			else if (s.equalsIgnoreCase("kyle")) { words[i] = "spud"; }
 		}
 		e.setMessage(String.join(" ", words).toLowerCase());
 		
