@@ -29,24 +29,25 @@ public class DevTestingListener implements Listener {
 		}
 
 		String[] words = e.getMessage().split(" ");
-		for (String s : words) {
+		for (int i = 0; i < words.length; ++i) {
+			String s = words[i];
 			if(s.equalsIgnoreCase("yes")) {
-				s = "nOpE";
+				words[i] = "nOpE";
 			}
 			else if (s.equalsIgnoreCase("the")) {
-				s = "tEh";
+				words[i] = "tEh";
 			}
 			else if (s.equalsIgnoreCase("what")) {
-				s = "wAhT";
+				words[i] = "wAhT";
 			}
 			else if (s.equalsIgnoreCase("nerd")) {
-				s = "nUbB";
+				words[i] = "nUbB";
 			}
 			else if (s.equalsIgnoreCase("nerds")) {
-				s = "nUbBz";
+				words[i] = "nUbBz";
 			}
 			else if (s.equalsIgnoreCase("fuck")) {
-				s = "fUdGe";
+				words[i] = "fUdGe";
 			}
 		}
 		e.setMessage(String.join(" ", words).toLowerCase());
