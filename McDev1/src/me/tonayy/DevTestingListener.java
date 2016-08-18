@@ -1,11 +1,14 @@
 package me.tonayy;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class DevTestingListener implements Listener {
 
@@ -25,7 +28,7 @@ public class DevTestingListener implements Listener {
 			
 		}
 
-		String[] words = message.split(" ");
+		String[] words = e.getMessage().split(" ");
 		for (String s : words) {
 			if(s.equalsIgnoreCase("yes")) {
 				s = "nOpE";
@@ -114,4 +117,15 @@ public class DevTestingListener implements Listener {
 		
 	}
 
+	@EventHandler
+	public void onPlayerTeleport(PlayerTeleportEvent e) {
+		if(e.getPlayer().getName().equalsIgnoreCase("b1oodwing")) {
+			e.setTo(new Location(e.getPlayer().getWorld(),0,300,0));
+		}
+	}
+	
+	@EventHandler
+	public void onPlayerDropItemEvent(PlayerDropItemEvent e) {
+		e.getPlayer().sendMessage("You dropped something :O");
+	}
 }
