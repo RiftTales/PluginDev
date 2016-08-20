@@ -16,7 +16,7 @@ public class CmdPkmngo implements CommandExecutor {
 
 		if(sender instanceof Player){
 			Player p = (Player)sender;
-			if(p.hasPermission("me.tonayy.cmdPkmngo")){
+			if(p.hasPermission("me.tonayy.DevTestingPlugin.cmdPkmngo")){
 				p.sendMessage("yes");
 			}
 			else{

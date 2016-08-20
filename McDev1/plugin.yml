@@ -32,9 +32,18 @@ commands:
     usage: /<command>
   sudocmd:
     description: Makes player perform a command.
-    usage: /<command> [player] [command]
+    usage: /<command> <player> <cmd>
   sudo:
     description: Makes player send a chat message or perform a command.
-    usage: /<command> [player] [message]
+    usage: /<command> <player> <message>
   lolz:
     usage: /<command>
+  allowrain:
+    description: Enables/Disables any weather change to rain.
+    usage: /<command> <true/false>
+  giveperm:
+    description: Grants player a permission
+    usage: /<command> <player> <permission>
+  takeperm:
+    description: Revokes a player's permission
+    usage: /<command> <player> <permission>

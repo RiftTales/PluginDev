@@ -1,7 +1,10 @@
 package me.tonayy;
 
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -9,6 +12,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class DevTestingListener implements Listener {
 
@@ -128,7 +132,20 @@ public class DevTestingListener implements Listener {
 	}
 	
 	@EventHandler
-	public void onPlayerDropItemEvent(PlayerDropItemEvent e) {
+	public void onPlayerDropItem(PlayerDropItemEvent e) {
 		e.getPlayer().sendMessage("You dropped something :O");
+	}
+	
+	@EventHandler
+	public void onWeatherChange(WeatherChangeEvent e) {
+		if(!DevTestingPlugin.allowRain) {
+			if (e.toWeatherState()) {
+				e.setCancelled(true);
+				List<Entity> entities = e.getWorld().getEntities();
+				if(entities.size()>0) {
+					entities.get(0).getServer().getLogger().info("Weather change to RAIN was cancelled. To allow rain, use /allowrain true.");
+				}
+			}
+		}
 	}
 }
