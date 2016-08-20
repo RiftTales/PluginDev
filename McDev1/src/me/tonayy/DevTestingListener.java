@@ -1,7 +1,6 @@
 package me.tonayy;
 
 import java.util.List;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -17,21 +16,19 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 public class DevTestingListener implements Listener {
 
 	public DevTestingListener(DevTestingPlugin plugin) {
-		
 		plugin.getServer().getPluginManager().registerEvents(this,plugin);
-		
 	}
 	
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e) {
 		
 		String message = e.getMessage();
-		if(message.equalsIgnoreCase("hey")){
+		if (message.equalsIgnoreCase("hey")) {
 			
 			e.setMessage("KONNICHIWA");
 			return;
 		}
-		else if(message.equalsIgnoreCase("we")){
+		else if (message.equalsIgnoreCase("we")) {
 			
 			e.setMessage("We are the crystal gems!");
 			return;
@@ -39,6 +36,7 @@ public class DevTestingListener implements Listener {
 
 		String[] words = e.getMessage().split(" ");
 		for (int i = 0; i < words.length; ++i) {
+			
 			String s = words[i];
 			if (s.equalsIgnoreCase("yes")) { words[i] = "nope"; }
 			else if (s.equalsIgnoreCase("the")) { words[i] = "teh"; }
@@ -57,7 +55,6 @@ public class DevTestingListener implements Listener {
 			else if (s.equalsIgnoreCase("kyle")) { words[i] = "spud"; }
 		}
 		e.setMessage(String.join(" ", words).toLowerCase());
-		
 	}
 	
 	@EventHandler
@@ -65,17 +62,12 @@ public class DevTestingListener implements Listener {
 		
 		String name = e.getPlayer().getName();
 		if (name.equalsIgnoreCase("tonyboyangie3")) {
-			//e.setQuitMessage(e.getQuitMessage().replaceFirst("tonyboyangie3", "Notch"));
-			//e.getPlayer().getServer().broadcastMessage(ChatColor.RED + "Val has been terminated!");
 			e.setQuitMessage(ChatColor.RED + "Val has been terminated!");
 		}
 		else if (name.equalsIgnoreCase("bsparkz")) {
-			//e.setQuitMessage(e.getQuitMessage().replaceFirst("BSparkz", "Nobody"));
-			//e.getPlayer().getServer().broadcastMessage(ChatColor.DARK_GREEN + "Our favorite hero Spud has left us forever :(");
 			e.setQuitMessage(ChatColor.DARK_GREEN + "Our favorite hero Spud has left us forever :(");
 		}
 		else if (name.equalsIgnoreCase("lukecreative") || name.equalsIgnoreCase("lukesurvival")) {
-			//e.getPlayer().getServer().broadcastMessage(ChatColor.LIGHT_PURPLE + "Byee Luke");
 			e.setQuitMessage(ChatColor.LIGHT_PURPLE + "Byee Luke");
 		}
 		else if (name.equalsIgnoreCase("b1oodwing")) {
@@ -95,33 +87,31 @@ public class DevTestingListener implements Listener {
 		
 		String name = e.getPlayer().getName();
 		if (name.equalsIgnoreCase("tonyboyangie3")) {
-			//e.setJoinMessage(e.getJoinMessage().replaceFirst("tonyboyangie3", "Notch"));
-			//e.getPlayer().getServer().broadcastMessage(ChatColor.DARK_RED + "Beware! Val has entered the game.");
+			
 			e.setJoinMessage(ChatColor.DARK_RED + "Beware! Val has entered the game.");
 			e.getPlayer().setDisplayName(ChatColor.DARK_RED + "Val");
 		}
 		else if (name.equalsIgnoreCase("bsparkz")) {
-			//e.setJoinMessage(e.getJoinMessage().replaceFirst("BSparkz", "Nobody"));
-			//e.getPlayer().getServer().broadcastMessage(ChatColor.GREEN + "Spud is here to save the day!");
+			
 			e.setJoinMessage(ChatColor.GREEN + "Spud is here to save the day!");
 			e.getPlayer().setDisplayName(ChatColor.GREEN + "Spud");
 		}
 		else if (name.equalsIgnoreCase("lukecreative") || name.equalsIgnoreCase("lukesurvival")) {
-			//e.getPlayer().getServer().broadcastMessage(ChatColor.DARK_PURPLE + "Yay! Luke is here!");
 			e.setJoinMessage(ChatColor.DARK_PURPLE + "Yay! Luke is here!");
 		}
 		else if (name.equalsIgnoreCase("b1oodwing")) {
 			e.setJoinMessage(ChatColor.BLUE + "Hey there Chris! You're a nerd..");
 		}
 		else if (name.equalsIgnoreCase("sc_pikachu")) {
+			
 			e.setJoinMessage(ChatColor.YELLOW + "PIKACHU!");
 			e.getPlayer().performCommand("kek");
 		}
 		else if(name.equalsIgnoreCase("general_jaxter")) {
+			
 			e.getPlayer().setDisplayName(ChatColor.DARK_AQUA + "JAXTER");
 			e.getPlayer().setPlayerListName(ChatColor.DARK_AQUA + "JAXTER");
 		}
-		
 	}
 
 	@EventHandler
