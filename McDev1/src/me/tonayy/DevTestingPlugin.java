@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 public class DevTestingPlugin extends JavaPlugin {
 
 	public boolean hofRep = false;
-	public boolean allowRain = false;
+	public boolean allowRain = true;
 	public DevTestingListener listener;
 	public HashMap<UUID, PermissionAttachment> attachments;
 	
