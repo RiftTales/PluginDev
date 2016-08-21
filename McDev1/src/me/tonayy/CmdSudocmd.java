@@ -6,10 +6,11 @@ import org.bukkit.entity.Player;
 
 public class CmdSudocmd extends CmdBase {
 	
-	public CmdSudocmd() {
+	public CmdSudocmd(DevTestingPlugin plugin) {
 		
 		this.commandName = "Sudocmd";
 		this.permissionName = "me.tonayy.DevTestingPlugin.cmd" + commandName;
+		this.plugin = plugin;
 	}
 	
 	@Override

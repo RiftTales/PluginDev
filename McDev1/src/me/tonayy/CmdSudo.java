@@ -6,10 +6,11 @@ import org.bukkit.entity.Player;
 
 public class CmdSudo extends CmdBase {
 	
-	public CmdSudo() {
+	public CmdSudo(DevTestingPlugin plugin) {
 		
 		this.commandName = "Sudo";
 		this.permissionName = "me.tonayy.DevTestingPlugin.cmd" + commandName;
+		this.plugin = plugin;
 	}
 	
 	@Override

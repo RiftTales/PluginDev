@@ -6,10 +6,11 @@ import org.bukkit.entity.Player;
 
 public class CmdHello extends CmdBase {
 	
-	public CmdHello() {
+	public CmdHello(DevTestingPlugin plugin) {
 		
 		this.commandName = "Hello";
 		this.permissionName = "me.tonayy.DevTestingPlugin.cmd" + commandName;
+		this.plugin = plugin;
 	}
 	
 	@Override

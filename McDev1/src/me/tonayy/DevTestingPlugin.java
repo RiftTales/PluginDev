@@ -1,15 +1,22 @@
 package me.tonayy;
 
+import java.util.HashMap;
+import java.util.UUID;
 import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
 public class DevTestingPlugin extends JavaPlugin {
 
-	public static boolean hofRep = false;
-	public static boolean allowRain = false;
+	public boolean hofRep = false;
+	public boolean allowRain = false;
+	public DevTestingListener listener;
+	public HashMap<UUID, PermissionAttachment> attachments;
+	
 	private PluginCommand setupCommand(CmdBase command) {
 
 		PluginCommand c = this.getCommand(command.commandName.toLowerCase());
@@ -21,24 +28,32 @@ public class DevTestingPlugin extends JavaPlugin {
 		return c;
 	}
 	
+	public PermissionAttachment getPermissionAttachment(Player p) {
+		
+		if (attachments.containsKey(p.getUniqueId())) {
+			return attachments.get(p);
+		}
+		return null;
+	}
+	
 	@Override
 	public void onEnable() {
 		
-		this.setupCommand(new CmdHello());
-		this.setupCommand(new CmdSpud());
-		this.setupCommand(new CmdHof());
-		this.setupCommand(new CmdPkmngo());
-		this.setupCommand(new CmdKek());
-		this.setupCommand(new CmdStahp());
-		this.setupCommand(new CmdShowhof());
-		this.setupCommand(new CmdLolz());
-		this.setupCommand(new CmdTony());
-		this.setupCommand(new CmdUntony());
-		this.setupCommand(new CmdSudocmd());
-		this.setupCommand(new CmdSudo());
-		this.setupCommand(new CmdAllowrain());
-		this.setupCommand(new CmdGiveperm());
-		this.setupCommand(new CmdTakeperm());
+		this.setupCommand(new CmdHello(this));
+		this.setupCommand(new CmdSpud(this));
+		this.setupCommand(new CmdHof(this));
+		this.setupCommand(new CmdPkmngo(this));
+		this.setupCommand(new CmdKek(this));
+		this.setupCommand(new CmdStahp(this));
+		this.setupCommand(new CmdShowhof(this));
+		this.setupCommand(new CmdLolz(this));
+		this.setupCommand(new CmdTony(this));
+		this.setupCommand(new CmdUntony(this));
+		this.setupCommand(new CmdSudocmd(this));
+		this.setupCommand(new CmdSudo(this));
+		this.setupCommand(new CmdAllowrain(this));
+		this.setupCommand(new CmdGiveperm(this));
+		this.setupCommand(new CmdTakeperm(this));
 
 		BukkitScheduler scheduler = getServer().getScheduler();
 		scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
@@ -52,6 +67,11 @@ public class DevTestingPlugin extends JavaPlugin {
             }
         }, 200L, 3600L);
 		
-		new DevTestingListener(this);
+		listener = new DevTestingListener(this);
+	}
+	
+	@Override
+	public void onDisable() {
+		attachments.clear();
 	}
 }

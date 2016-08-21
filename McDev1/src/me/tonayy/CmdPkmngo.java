@@ -6,10 +6,11 @@ import org.bukkit.entity.Player;
 
 public class CmdPkmngo extends CmdBase {
 	
-	public CmdPkmngo() {
+	public CmdPkmngo(DevTestingPlugin plugin) {
 		
 		this.commandName = "Pkmngo";
 		this.permissionName = "me.tonayy.DevTestingPlugin.cmd" + commandName;
+		this.plugin = plugin;
 	}
 	
 	@Override

@@ -6,10 +6,11 @@ import org.bukkit.command.CommandSender;
 
 public class CmdHof extends CmdBase {
 	
-	public CmdHof() {
+	public CmdHof(DevTestingPlugin plugin) {
 		
 		this.commandName = "Hof";
 		this.permissionName = "me.tonayy.DevTestingPlugin.cmd" + commandName;
+		this.plugin = plugin;
 	}
 	
 	@Override

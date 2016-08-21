@@ -7,9 +7,11 @@ import org.bukkit.entity.Player;
 
 public class CmdSpud extends CmdBase {
 	
-	public CmdSpud() {
+	public CmdSpud(DevTestingPlugin plugin) {
+		
 		this.commandName = "Spud";
 		this.permissionName = "me.tonayy.DevTestingPlugin.cmd" + commandName;
+		this.plugin = plugin;
 	}
 	
 	@Override

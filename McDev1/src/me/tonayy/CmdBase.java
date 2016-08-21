@@ -8,6 +8,7 @@ public class CmdBase implements CommandExecutor {
 
 	public String commandName = "Base";
 	public String permissionName = "me.tonayy.DevTestingPlugin.cmdBase";
+	public DevTestingPlugin plugin;
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

@@ -1,22 +1,43 @@
 package me.tonayy;
 
 import java.util.List;
+import java.util.UUID;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
+import org.bukkit.permissions.PermissionAttachment;
 
 public class DevTestingListener implements Listener {
 
+	public DevTestingPlugin plugin;
+	
 	public DevTestingListener(DevTestingPlugin plugin) {
-		plugin.getServer().getPluginManager().registerEvents(this,plugin);
+		
+		this.plugin = plugin;
+		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+	}
+	
+	private void addPermissionAttachment(Player p) {
+		plugin.attachments.put(p.getUniqueId(), p.addAttachment(plugin));
+	}
+	
+	private void removePermissionAttachment(Player p) {
+		
+		UUID uuid = p.getUniqueId();
+		if (plugin.attachments.containsKey(uuid)) {
+			
+			PermissionAttachment attachment = plugin.attachments.get(uuid);
+			p.removeAttachment(attachment);
+			plugin.attachments.remove(uuid);
+		}
 	}
 	
 	@EventHandler
@@ -53,14 +74,19 @@ public class DevTestingListener implements Listener {
 			else if (s.equalsIgnoreCase("you")) { words[i] = "yuo"; }
 			else if (s.equalsIgnoreCase("chris")) { words[i] = "kaneki"; }
 			else if (s.equalsIgnoreCase("kyle")) { words[i] = "spud"; }
+			else if (s.equalsIgnoreCase("hey")) { words[i] = "heyo"; }
 		}
 		e.setMessage(String.join(" ", words).toLowerCase());
 	}
 	
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent e) {
+
+		Player p = e.getPlayer();
+		String name = p.getName();
 		
-		String name = e.getPlayer().getName();
+		removePermissionAttachment(p);
+		
 		if (name.equalsIgnoreCase("tonyboyangie3")) {
 			e.setQuitMessage(ChatColor.RED + "Val has been terminated!");
 		}
@@ -79,22 +105,28 @@ public class DevTestingListener implements Listener {
 		else if(name.equalsIgnoreCase("general_jaxter")) {
 			e.setQuitMessage(e.getQuitMessage().replaceAll("General_Jaxter", "Jax"));
 		}
+	}
+	
+	@EventHandler
+	public void onPlayerKick(PlayerKickEvent e) {
 		
+		removePermissionAttachment(e.getPlayer());
 	}
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
 		
-		String name = e.getPlayer().getName();
+		Player p = e.getPlayer();
+		String name = p.getName();
 		if (name.equalsIgnoreCase("tonyboyangie3")) {
 			
 			e.setJoinMessage(ChatColor.DARK_RED + "Beware! Val has entered the game.");
-			e.getPlayer().setDisplayName(ChatColor.DARK_RED + "Val");
+			p.setDisplayName(ChatColor.DARK_RED + "Val");
 		}
 		else if (name.equalsIgnoreCase("bsparkz")) {
 			
 			e.setJoinMessage(ChatColor.GREEN + "Spud is here to save the day!");
-			e.getPlayer().setDisplayName(ChatColor.GREEN + "Spud");
+			p.setDisplayName(ChatColor.GREEN + "Spud");
 		}
 		else if (name.equalsIgnoreCase("lukecreative") || name.equalsIgnoreCase("lukesurvival")) {
 			e.setJoinMessage(ChatColor.DARK_PURPLE + "Yay! Luke is here!");
@@ -105,20 +137,15 @@ public class DevTestingListener implements Listener {
 		else if (name.equalsIgnoreCase("sc_pikachu")) {
 			
 			e.setJoinMessage(ChatColor.YELLOW + "PIKACHU!");
-			e.getPlayer().performCommand("kek");
+			p.performCommand("kek");
 		}
 		else if(name.equalsIgnoreCase("general_jaxter")) {
 			
-			e.getPlayer().setDisplayName(ChatColor.DARK_AQUA + "JAXTER");
-			e.getPlayer().setPlayerListName(ChatColor.DARK_AQUA + "JAXTER");
+			p.setDisplayName(ChatColor.DARK_AQUA + "JAXTER");
+			p.setPlayerListName(ChatColor.DARK_AQUA + "JAXTER");
 		}
-	}
-
-	@EventHandler
-	public void onPlayerTeleport(PlayerTeleportEvent e) {
-		if(e.getPlayer().getName().equalsIgnoreCase("b1oodwing")) {
-			e.setTo(new Location(e.getPlayer().getWorld(),0,300,0));
-		}
+		
+		addPermissionAttachment(p);
 	}
 	
 	@EventHandler
@@ -128,7 +155,7 @@ public class DevTestingListener implements Listener {
 	
 	@EventHandler
 	public void onWeatherChange(WeatherChangeEvent e) {
-		if(!DevTestingPlugin.allowRain) {
+		if(!plugin.allowRain) {
 			if (e.toWeatherState()) {
 				e.setCancelled(true);
 				List<Entity> entities = e.getWorld().getEntities();

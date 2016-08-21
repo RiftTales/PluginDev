@@ -5,16 +5,17 @@ import org.bukkit.command.CommandSender;
 
 public class CmdStahp extends CmdBase {
 	
-	public CmdStahp() {
+	public CmdStahp(DevTestingPlugin plugin) {
 		
 		this.commandName = "Stahp";
 		this.permissionName = "me.tonayy.DevTestingPlugin.cmd" + commandName;
+		this.plugin = plugin;
 	}
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
-		DevTestingPlugin.hofRep = false;
+		this.plugin.hofRep = false;
 		return true;
 	}
 }

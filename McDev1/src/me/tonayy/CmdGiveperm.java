@@ -5,10 +5,11 @@ import org.bukkit.command.CommandSender;
 
 public class CmdGiveperm extends CmdBase {
 	
-	public CmdGiveperm() {
+	public CmdGiveperm(DevTestingPlugin plugin) {
 		
 		this.commandName = "Giveperm";
 		this.permissionName = "me.tonayy.DevTestingPlugin.cmd" + commandName;
+		this.plugin = plugin;
 	}
 	
 	@Override

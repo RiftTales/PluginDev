@@ -8,10 +8,11 @@ import org.bukkit.entity.Player;
 
 public class CmdKek extends CmdBase {
 	
-	public CmdKek() {
+	public CmdKek(DevTestingPlugin plugin) {
 		
 		this.commandName = "Kek";
 		this.permissionName = "me.tonayy.DevTestingPlugin.cmd" + commandName;
+		this.plugin = plugin;
 	}
 	
 	@Override

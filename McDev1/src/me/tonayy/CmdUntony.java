@@ -6,9 +6,11 @@ import org.bukkit.entity.Player;
 
 public class CmdUntony extends CmdBase {
 	
-	public CmdUntony() {
+	public CmdUntony(DevTestingPlugin plugin) {
+		
 		this.commandName = "Untony";
 		this.permissionName = "me.tonayy.DevTestingPlugin.cmd" + commandName;
+		this.plugin = plugin;
 	}
 	
 	@Override
