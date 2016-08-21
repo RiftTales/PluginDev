@@ -132,7 +132,7 @@ public class DevTestingListener implements Listener {
 			e.setJoinMessage(ChatColor.DARK_PURPLE + "Yay! Luke is here!");
 		}
 		else if (name.equalsIgnoreCase("b1oodwing")) {
-			e.setJoinMessage(ChatColor.BLUE + "Hey there Chris! You're a nerd..");
+			e.setJoinMessage(ChatColor.BLUE + "Hey there Chris! You're a Awesome..");
 		}
 		else if (name.equalsIgnoreCase("sc_pikachu")) {
 			
