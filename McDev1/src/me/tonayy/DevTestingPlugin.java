@@ -15,7 +15,7 @@ public class DevTestingPlugin extends JavaPlugin {
 	public boolean hofRep = false;
 	public boolean allowRain = true;
 	public DevTestingListener listener;
-	public HashMap<UUID, PermissionAttachment> attachments;
+	public HashMap<UUID, PermissionAttachment> attachments = new HashMap<UUID, PermissionAttachment>();
 	
 	private PluginCommand setupCommand(CmdBase command) {
 
