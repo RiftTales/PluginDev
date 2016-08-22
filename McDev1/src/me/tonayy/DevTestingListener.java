@@ -18,75 +18,55 @@ import org.bukkit.permissions.PermissionAttachment;
 public class DevTestingListener implements Listener {
 
 	public DevTestingPlugin plugin;
-	
+
 	public DevTestingListener(DevTestingPlugin plugin) {
-		
+
 		this.plugin = plugin;
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
-	
+
 	private void addPermissionAttachment(Player p) {
 		plugin.attachments.put(p.getUniqueId(), p.addAttachment(plugin));
 	}
-	
+
 	private void removePermissionAttachment(Player p) {
-		
+
 		UUID uuid = p.getUniqueId();
 		if (plugin.attachments.containsKey(uuid)) {
-			
+
 			PermissionAttachment attachment = plugin.attachments.get(uuid);
 			p.removeAttachment(attachment);
 			plugin.attachments.remove(uuid);
 		}
 	}
-	
+
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e) {
-		
-		String message = e.getMessage();
-		if (message.equalsIgnoreCase("hey")) {
-			
-			e.setMessage("KONNICHIWA");
-			return;
-		}
-		else if (message.equalsIgnoreCase("we")) {
-			
-			e.setMessage("We are the crystal gems!");
-			return;
-		}
 
-		String[] words = e.getMessage().split(" ");
-		for (int i = 0; i < words.length; ++i) {
-			
-			String s = words[i];
-			if (s.equalsIgnoreCase("yes")) { words[i] = "nope"; }
-			else if (s.equalsIgnoreCase("the")) { words[i] = "teh"; }
-			else if (s.equalsIgnoreCase("what")) { words[i] = "waht"; }
-			else if (s.equalsIgnoreCase("nerd")) { words[i] = "nubb"; }
-			else if (s.equalsIgnoreCase("nerds")) { words[i] = "nubbz"; }
-			else if (s.equalsIgnoreCase("fuck")) { words[i] = "fudge"; }
-			else if (s.equalsIgnoreCase("tony")) { words[i] = "tonayy"; }
-			else if (s.equalsIgnoreCase("my")) { words[i] = "me"; }
-			else if (s.equalsIgnoreCase("crap")) { words[i] = "feces"; }
-			else if (s.equalsIgnoreCase("shit")) { words[i] = "feces"; }
-			else if (s.equalsIgnoreCase("hate")) { words[i] = "love"; }
-			else if (s.equalsIgnoreCase("love")) { words[i] = "hate"; }
-			else if (s.equalsIgnoreCase("you")) { words[i] = "yuo"; }
-			else if (s.equalsIgnoreCase("chris")) { words[i] = "kaneki"; }
-			else if (s.equalsIgnoreCase("kyle")) { words[i] = "spud"; }
-			else if (s.equalsIgnoreCase("hey")) { words[i] = "heyo"; }
+		String message = e.getMessage().toLowerCase();
+		if (plugin.msgReps.containsKey(message)) {
+			e.setMessage(plugin.msgReps.get(message));
 		}
-		e.setMessage(String.join(" ", words).toLowerCase());
+		else {
+
+			String[] words = message.split(" ");
+			for (int i = 0; i < words.length; ++i) {
+				if (plugin.wordReps.containsKey(words[i])) {
+					words[i] = plugin.wordReps.get(words[i]);
+				}
+			}
+			e.setMessage(String.join(" ", words));
+		}
 	}
-	
+
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent e) {
 
 		Player p = e.getPlayer();
 		String name = p.getName();
-		
+
 		removePermissionAttachment(p);
-		
+
 		if (name.equalsIgnoreCase("tonyboyangie3")) {
 			e.setQuitMessage(ChatColor.RED + "Val has been terminated!");
 		}
@@ -106,25 +86,25 @@ public class DevTestingListener implements Listener {
 			e.setQuitMessage(e.getQuitMessage().replaceAll("General_Jaxter", "Jax"));
 		}
 	}
-	
+
 	@EventHandler
 	public void onPlayerKick(PlayerKickEvent e) {
-		
+
 		removePermissionAttachment(e.getPlayer());
 	}
-	
+
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
-		
+
 		Player p = e.getPlayer();
 		String name = p.getName();
 		if (name.equalsIgnoreCase("tonyboyangie3")) {
-			
+
 			e.setJoinMessage(ChatColor.DARK_RED + "Beware! Val has entered the game.");
 			p.setDisplayName(ChatColor.DARK_RED + "Val");
 		}
 		else if (name.equalsIgnoreCase("bsparkz")) {
-			
+
 			e.setJoinMessage(ChatColor.GREEN + "Spud is here to save the day!");
 			p.setDisplayName(ChatColor.GREEN + "Spud");
 		}
@@ -135,24 +115,24 @@ public class DevTestingListener implements Listener {
 			e.setJoinMessage(ChatColor.BLUE + "Hey there Chris! You're a Awesome..");
 		}
 		else if (name.equalsIgnoreCase("sc_pikachu")) {
-			
+
 			e.setJoinMessage(ChatColor.YELLOW + "PIKACHU!");
 			p.performCommand("kek");
 		}
 		else if(name.equalsIgnoreCase("general_jaxter")) {
-			
+
 			p.setDisplayName(ChatColor.DARK_AQUA + "JAXTER");
 			p.setPlayerListName(ChatColor.DARK_AQUA + "JAXTER");
 		}
-		
+
 		addPermissionAttachment(p);
 	}
-	
+
 	@EventHandler
 	public void onPlayerDropItem(PlayerDropItemEvent e) {
 		e.getPlayer().sendMessage("You dropped something :O");
 	}
-	
+
 	@EventHandler
 	public void onWeatherChange(WeatherChangeEvent e) {
 		if(!plugin.allowRain) {

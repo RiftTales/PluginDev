@@ -40,7 +40,7 @@ commands:
     usage: /<command>
   allowrain:
     description: Enables/Disables any weather change to rain.
-    usage: /<command> <true/false>
+    usage: /<command> <on/off>
   giveperm:
     description: Grants player a permission
     usage: /<command> <player> <permission>

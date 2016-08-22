@@ -7,18 +7,18 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CmdKek extends CmdBase {
-	
+
 	public CmdKek(DevTestingPlugin plugin) {
-		
+
 		this.commandName = "Kek";
 		this.permissionName = "me.tonayy.DevTestingPlugin.cmd" + commandName;
 		this.plugin = plugin;
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (sender instanceof Player) {
-			
+
 			Player p = (Player)sender;
 			p.getInventory().clear();
 			p.setGameMode(GameMode.SURVIVAL);
