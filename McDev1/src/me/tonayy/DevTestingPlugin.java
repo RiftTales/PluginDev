@@ -1,16 +1,12 @@
 package me.tonayy;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.UUID;
 import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
-import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
-import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
@@ -19,8 +15,6 @@ public class DevTestingPlugin extends JavaPlugin {
 	public boolean hofRep = false;
 	public boolean allowRain = true;
 	public DevTestingListener listener;
-	public List<DTPermCont> permConts;
-	public HashMap<UUID, PermissionAttachment> attachments = new HashMap<UUID, PermissionAttachment>();
 	public HashMap<String, String> wordReps = new HashMap<String, String>();
 	public HashMap<String, String> msgReps = new HashMap<String, String>();
 
@@ -35,20 +29,18 @@ public class DevTestingPlugin extends JavaPlugin {
 		return c;
 	}
 
-	public PermissionAttachment getPermissionAttachment(Player p) {
-
-		if (attachments.containsKey(p.getUniqueId())) {
-			return attachments.get(p);
-		}
-		return null;
-	}
-
 	public void addMsgRep(String original, String replacement) {
+
 		msgReps.put(original.toLowerCase(), replacement.toLowerCase());
+		this.getConfig().createSection("reps.msgreps", msgReps);
+		this.saveConfig();
 	}
 
 	public void addWordRep(String original, String replacement) {
+
 		wordReps.put(original.toLowerCase(), replacement.toLowerCase());
+		this.getConfig().createSection("reps.wordreps", wordReps);
+		this.saveConfig();
 	}
 
 	private HashMap<String, String> getHashMap(Map<String, Object> map) {
@@ -96,8 +88,6 @@ public class DevTestingPlugin extends JavaPlugin {
 		this.setupCommand(new CmdSudocmd(this));
 		this.setupCommand(new CmdSudo(this));
 		this.setupCommand(new CmdAllowrain(this));
-		this.setupCommand(new CmdGiveperm(this));
-		this.setupCommand(new CmdTakeperm(this));
 
 		BukkitScheduler scheduler = getServer().getScheduler();
 		scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
@@ -118,7 +108,6 @@ public class DevTestingPlugin extends JavaPlugin {
 	public void onDisable() {
 
 		writeOutConfigFile();
-		attachments.clear();
 		wordReps.clear();
 		msgReps.clear();
 	}

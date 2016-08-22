@@ -1,7 +1,6 @@
 package me.tonayy;
 
 import java.util.List;
-import java.util.UUID;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -10,10 +9,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
-import org.bukkit.permissions.PermissionAttachment;
 
 public class DevTestingListener implements Listener {
 
@@ -23,21 +20,6 @@ public class DevTestingListener implements Listener {
 
 		this.plugin = plugin;
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
-	}
-
-	private void addPermissionAttachment(Player p) {
-		plugin.attachments.put(p.getUniqueId(), p.addAttachment(plugin));
-	}
-
-	private void removePermissionAttachment(Player p) {
-
-		UUID uuid = p.getUniqueId();
-		if (plugin.attachments.containsKey(uuid)) {
-
-			PermissionAttachment attachment = plugin.attachments.get(uuid);
-			p.removeAttachment(attachment);
-			plugin.attachments.remove(uuid);
-		}
 	}
 
 	@EventHandler
@@ -65,8 +47,6 @@ public class DevTestingListener implements Listener {
 		Player p = e.getPlayer();
 		String name = p.getName();
 
-		removePermissionAttachment(p);
-
 		if (name.equalsIgnoreCase("tonyboyangie3")) {
 			e.setQuitMessage(ChatColor.RED + "Val has been terminated!");
 		}
@@ -85,12 +65,6 @@ public class DevTestingListener implements Listener {
 		else if(name.equalsIgnoreCase("general_jaxter")) {
 			e.setQuitMessage(e.getQuitMessage().replaceAll("General_Jaxter", "Jax"));
 		}
-	}
-
-	@EventHandler
-	public void onPlayerKick(PlayerKickEvent e) {
-
-		removePermissionAttachment(e.getPlayer());
 	}
 
 	@EventHandler
@@ -124,8 +98,6 @@ public class DevTestingListener implements Listener {
 			p.setDisplayName(ChatColor.DARK_AQUA + "JAXTER");
 			p.setPlayerListName(ChatColor.DARK_AQUA + "JAXTER");
 		}
-
-		addPermissionAttachment(p);
 	}
 
 	@EventHandler

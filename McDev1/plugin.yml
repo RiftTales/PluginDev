@@ -41,9 +41,3 @@ commands:
   allowrain:
     description: Enables/Disables any weather change to rain.
     usage: /<command> <on/off>
-  giveperm:
-    description: Grants player a permission
-    usage: /<command> <player> <permission>
-  takeperm:
-    description: Revokes a player's permission
-    usage: /<command> <player> <permission>
