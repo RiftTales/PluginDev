@@ -3,7 +3,6 @@ package me.tonayy;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.permissions.Permission;
@@ -46,8 +45,7 @@ public class DevTestingPlugin extends JavaPlugin {
 	private HashMap<String, String> getHashMap(Map<String, Object> map) {
 
 		HashMap<String, String> hashmap = new HashMap<String, String>();
-		Set<Entry<String, Object>> entryset = map.entrySet();
-		Object[] mapArr = entryset.toArray();
+		Object[] mapArr = map.entrySet().toArray();
 		for (int i = 0; i < mapArr.length; ++i) {
 
 			Entry<?, ?> entry = (Entry<?, ?>)(mapArr[i]);
@@ -56,14 +54,14 @@ public class DevTestingPlugin extends JavaPlugin {
 		return hashmap;
 	}
 
-	private void readInConfigFile() {
+	private void readConfigFile() {
 
 		this.saveDefaultConfig();
 		wordReps = getHashMap(this.getConfig().getConfigurationSection("reps.wordreps").getValues(false));
 		msgReps = getHashMap(this.getConfig().getConfigurationSection("reps.msgreps").getValues(false));
 	}
 
-	private void writeOutConfigFile() {
+	private void writeConfigFile() {
 
 		this.getConfig().createSection("reps.wordreps", wordReps);
 		this.getConfig().createSection("reps.msgreps", msgReps);
@@ -73,7 +71,7 @@ public class DevTestingPlugin extends JavaPlugin {
 	@Override
 	public void onEnable() {
 
-		readInConfigFile();
+		readConfigFile();
 
 		this.setupCommand(new CmdHello(this));
 		this.setupCommand(new CmdSpud(this));
@@ -88,9 +86,12 @@ public class DevTestingPlugin extends JavaPlugin {
 		this.setupCommand(new CmdSudocmd(this));
 		this.setupCommand(new CmdSudo(this));
 		this.setupCommand(new CmdAllowrain(this));
+		this.setupCommand(new CmdRep(this));
+		this.setupCommand(new CmdDevtestingreloadconfig(this));
 
 		BukkitScheduler scheduler = getServer().getScheduler();
 		scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
+
             @Override
             public void run() {
             	if (hofRep) {
@@ -107,8 +108,15 @@ public class DevTestingPlugin extends JavaPlugin {
 	@Override
 	public void onDisable() {
 
-		writeOutConfigFile();
+		writeConfigFile();
 		wordReps.clear();
 		msgReps.clear();
+	}
+
+	public void reloadConfig() {
+
+		wordReps.clear();
+		msgReps.clear();
+		readConfigFile();
 	}
 }

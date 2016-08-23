@@ -41,3 +41,9 @@ commands:
   allowrain:
     description: Enables/Disables any weather change to rain.
     usage: /<command> <on/off>
+  rep:
+    description: ...
+    usage: /<command> <original> <replacement>
+  devtestingreloadconfig:
+    description: ...
+    usage: /<command>
