@@ -113,7 +113,7 @@ public class DevTestingPlugin extends JavaPlugin {
 		msgReps.clear();
 	}
 
-	public void reloadConfig() {
+	public void reloadConfigFile() {
 
 		wordReps.clear();
 		msgReps.clear();

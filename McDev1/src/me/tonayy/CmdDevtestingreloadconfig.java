@@ -15,7 +15,7 @@ public class CmdDevtestingreloadconfig extends CmdBase {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-		plugin.reloadConfig();
+		plugin.reloadConfigFile();
 		sender.sendMessage("Config Reloaded");
 		return true;
 	}
