@@ -88,6 +88,7 @@ public class DevTestingPlugin extends JavaPlugin {
 		this.setupCommand(new CmdAllowrain(this));
 		this.setupCommand(new CmdRep(this));
 		this.setupCommand(new CmdDevtestingreloadconfig(this));
+		this.setupCommand(new CmdTest(this));
 
 		BukkitScheduler scheduler = getServer().getScheduler();
 		scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
